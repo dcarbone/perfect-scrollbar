@@ -213,10 +213,10 @@
             breakingProcess = null,
             inGlobalTouch = false;
 
-        $(window).on("touchstart.perfect-scroll", function (e) {
+        $(window).on("touchstart.perfect-scroll", '.ps-container', function (e) {
           inGlobalTouch = true;
         });
-        $(window).on("touchend.perfect-scroll", function (e) {
+        $(window).on("touchend.perfect-scroll", '.ps-container', function (e) {
           inGlobalTouch = false;
         });
 
