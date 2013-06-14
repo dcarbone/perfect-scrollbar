@@ -372,7 +372,7 @@
         bindMouseScrollXHandler();
         bindMouseScrollYHandler();
         if (isMobile) {
-          onMobileTouchHandler();
+          bindMobileTouchHandler();
         }
         if ($this.mousewheel) {
           bindMouseWheelHandler();
