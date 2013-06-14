@@ -11,6 +11,13 @@
     -webkit-transition: opacity.2s linear;
     -moz-transition: opacity .2s linear;
     transition: opacity .2s linear;
+
+    /* Facilitates hide / show functionality */
+    display: none;
+}
+
+.ps-container .ps-scrollbar-x.ps-active {
+    display: block;
 }
 
 .ps-container:hover .ps-scrollbar-x {
@@ -42,6 +49,13 @@
     -webkit-transition: opacity.2s linear;
     -moz-transition: opacity .2s linear;
     transition: opacity .2s linear;
+
+    /* Facilitates hide / show functionality */
+    display: none;
+}
+
+.ps-container .ps-scrollbar-y.ps-active {
+    display: block;
 }
 
 .ps-container:hover .ps-scrollbar-y {
