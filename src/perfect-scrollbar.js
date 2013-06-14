@@ -35,6 +35,14 @@
       //   return $(this);
       // }
 
+      /*
+        If they are calling a method
+       */
+      if (typeof option === 'string' && typeof $(this).data('perfect-scrollbar-' + option) === "function") {
+        $(this).data('perfect-scrollbar-' + option)();
+        return $(this);
+      }
+
       if ($(this).data('perfect-scrollbar')) {
         // if there's already perfect-scrollbar
         return $(this).data('perfect-scrollbar');
@@ -390,17 +398,7 @@
             $this.data('perfect-scrollbar-' + x, psMethods[x]);
           }
         }
-
-        $this.data('perfect-scrollbar-show')();
       };
-
-      /*
-        If they are calling a method
-       */
-      if (typeof option === 'string' && typeof psMethods['perfect-scrollbar-' + option] === "function") {
-        $(this).data('perfect-scrollbar-' + option)();
-        return $(this);
-      }
 
       /*
         If they are initializing
