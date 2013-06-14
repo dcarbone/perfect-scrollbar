@@ -41,8 +41,8 @@
       }
 
       var $this = $(this).addClass('ps-container'),
-          $scrollbarX = $("<div class='ps-scrollbar-x'></div>").appendTo($this),
-          $scrollbarY = $("<div class='ps-scrollbar-y'></div>").appendTo($this),
+          $scrollbarX = $("<div class='ps-scrollbar-x ps-active'></div>").appendTo($this),
+          $scrollbarY = $("<div class='ps-scrollbar-y ps-active'></div>").appendTo($this),
           containerWidth,
           containerHeight,
           contentWidth,
