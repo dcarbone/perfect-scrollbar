@@ -95,7 +95,7 @@
         $scrollbarY.css({top: scrollbarYTop + $this.scrollTop()});
       };
 
-      var onMouseScrollXHandler = function () {
+      var bindMouseScrollXHandler = function () {
         var currentLeft,
             currentPageX;
 
@@ -123,7 +123,7 @@
         });
       };
 
-      var onMouseScrollYHandler = function () {
+      var bindMouseScrollYHandler = function () {
         var currentTop,
             currentPageY;
 
@@ -152,7 +152,7 @@
       };
 
       // on handlers
-      var onMouseWheelHandler = function () {
+      var bindMouseWheelHandler = function () {
         var shouldPreventDefault = function (deltaX, deltaY) {
           var scrollTop = $this.scrollTop();
           if (scrollTop === 0 && deltaY > 0 && deltaX === 0) {
@@ -186,7 +186,7 @@
       };
 
       // on mobile touch handler
-      var onMobileTouchHandler = function () {
+      var bindMobileTouchHandler = function () {
         var applyTouchMove = function (differenceX, differenceY) {
           $this.scrollTop($this.scrollTop() - differenceY);
           $this.scrollLeft($this.scrollLeft() - differenceX);
@@ -369,13 +369,13 @@
        */
       var initialize = function () {
         psMethods['updateBarSizeAndPosition']();
-        onMouseScrollXHandler();
-        onMouseScrollYHandler();
+        bindMouseScrollXHandler();
+        bindMouseScrollYHandler();
         if (isMobile) {
           onMobileTouchHandler();
         }
         if ($this.mousewheel) {
-          onMouseWheelHandler();
+          bindMouseWheelHandler();
         }
         $this.data('perfect-scrollbar', $this);
 
