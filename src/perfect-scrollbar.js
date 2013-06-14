@@ -22,22 +22,10 @@
         option = suppliedSettings;
       }
 
-      // if (option === 'update') {
-      //   if ($(this).data('perfect-scrollbar-update')) {
-      //     $(this).data('perfect-scrollbar-update')();
-      //   }
-      //   return $(this);
-      // }
-      // else if (option === 'destroy') {
-      //   if ($(this).data('perfect-scrollbar-destroy')) {
-      //     $(this).data('perfect-scrollbar-destroy')();
-      //   }
-      //   return $(this);
-      // }
-
       /*
         If they are calling a method
        */
+      if (option === "update") option = "updateBarSizeAndPosition";
       if (typeof option === 'string' && typeof $(this).data('perfect-scrollbar-' + option) === "function") {
         $(this).data('perfect-scrollbar-' + option)();
         return $(this);
@@ -189,7 +177,7 @@
           $this.scrollLeft($this.scrollLeft() + (deltaX * settings.wheelSpeed));
 
           // update bar position
-          psMethods['updateBarSizeAndPosition']();
+          $this.data('perfect-scrollbar-updateBarSizeAndPosition')();
 
           if (shouldPreventDefault(deltaX, deltaY)) {
             e.preventDefault();
@@ -204,7 +192,7 @@
           $this.scrollLeft($this.scrollLeft() - differenceX);
 
           // update bar position
-          psMethods['updateBarSizeAndPosition']();
+          $this.data('perfect-scrollbar-updateBarSizeAndPosition')();
         };
 
         var startCoords = {},
