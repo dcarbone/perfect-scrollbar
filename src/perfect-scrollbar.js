@@ -63,6 +63,11 @@
                 $scrollbarY.css({right: scrollbarYRight - scrollLeft});
             };
 
+            var updateScrollbarCss = function () {
+                $scrollbarX.css({left: scrollbarXLeft + $this.scrollLeft(), bottom: scrollbarXBottom - $this.scrollTop(), width: scrollbarXWidth});
+                $scrollbarY.css({top: scrollbarYTop + $this.scrollTop(), right: scrollbarYRight - $this.scrollLeft(), height: scrollbarYHeight});
+            };
+
             var moveBarX = function (currentLeft, deltaX) {
                 var newLeft = currentLeft + deltaX,
                     maxLeft = containerWidth - scrollbarXWidth;
@@ -151,9 +156,7 @@
                 });
             };
 
-            /**
-             * Binds even listeners for when a user scrolls
-             */
+            // bind handlers
             var bindMouseWheelHandler = function () {
                 var shouldPreventDefault = function (deltaX, deltaY) {
                     var scrollTop = $this.scrollTop();
@@ -205,10 +208,10 @@
                     breakingProcess = null,
                     inGlobalTouch = false;
 
-                $(window).on("touchstart.perfect-scroll", '.ps-container', function (e) {
+                $(window).on("touchstart.perfect-scroll", function (e) {
                     inGlobalTouch = true;
                 });
-                $(window).on("touchend.perfect-scroll", '.ps-container', function (e) {
+                $(window).on("touchend.perfect-scroll", function (e) {
                     inGlobalTouch = false;
                 });
 
@@ -273,9 +276,9 @@
                     var mouseleave = function () {
                         $(this).removeClass('hover');
                     };
-                    $this.bind('mouseenter.perfect-scroll', mouseenter).bind('mouseleave.perfect-scroll', mouseleave);
-                    $scrollbarX.bind('mouseenter.perfect-scroll', mouseenter).bind('mouseleave.perfect-scroll', mouseleave);
-                    $scrollbarY.bind('mouseenter.perfect-scroll', mouseenter).bind('mouseleave.perfect-scroll', mouseleave);
+                    $this.on('mouseenter.perfect-scroll', mouseenter).on('mouseleave.perfect-scroll', mouseleave);
+                    $scrollbarX.on('mouseenter.perfect-scroll', mouseenter).on('mouseleave.perfect-scroll', mouseleave);
+                    $scrollbarY.on('mouseenter.perfect-scroll', mouseenter).on('mouseleave.perfect-scroll', mouseleave);
                 };
 
                 var fixIe6ScrollbarPosition = function () {
@@ -302,11 +305,6 @@
                     bindHoverHandlers();
                     fixIe6ScrollbarPosition();
                 }
-            };
-
-            var updateScrollbarCss = function () {
-                $scrollbarX.css({left: scrollbarXLeft + $this.scrollLeft(), bottom: scrollbarXBottom - $this.scrollTop(), width: scrollbarXWidth});
-                $scrollbarY.css({top: scrollbarYTop + $this.scrollTop(), right: scrollbarYRight - $this.scrollLeft(), height: scrollbarYHeight});
             };
 
             // Object of user-callable methods for Perfect Scrollbar
@@ -357,9 +355,6 @@
                     {
                         $this.data('perfect-scrollbar-' + x, null);
                     }
-
-                    $this.data('perfect-scrollbar-update', null);
-                    $this.data('perfect-scrollbar-destroy', null);
                 },
 
                 /**
